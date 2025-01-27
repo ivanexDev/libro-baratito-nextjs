@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "./components/Navbar";
 
 const InterSans = Inter({
   variable: "--font-inter-sans",
@@ -22,16 +23,19 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1"
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={`${InterSans.variable} antialiased`}
       >
+        <Navbar/>
         {children}
       </body>
     </html>
