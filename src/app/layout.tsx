@@ -3,14 +3,24 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 
-const inter = Inter({
-  variable: "--font-inter",
+const InterSans = Inter({
+  variable: "--font-inter-sans",
   subsets: ["latin"],
-})
+});
 
 export const metadata: Metadata = {
-  title: "Libro Baratito",
-  description: "Esta al tanto del precio mas bajo de tus libros favoritos",
+  title: "Libro Baratito - Seguimiento de Precios de Libros",
+  description: "Encuentra ofertas de libros al instante. Agrega la URL de cualquier libro y recibe notificaciones por email cuando su precio baje.",
+  keywords: "libros, ofertas, precio, seguimiento, notificaciones, descuentos",
+  authors: [{ name: "IvanexDev" }, {name: "MicaheDev"}],
+  openGraph: {
+    title: "Libro Baratito - Seguimiento de Precios de Libros",
+    description: "Encuentra ofertas de libros al instante. Agrega la URL de cualquier libro y recibe notificaciones por email cuando su precio baje.",
+    type: "website",
+    locale: "es_ES"
+  },
+  robots: "index, follow",
+  viewport: "width=device-width, initial-scale=1"
 };
 
 
@@ -23,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${InterSans.variable} antialiased`}
       >
         <Navbar/>
         {children}
