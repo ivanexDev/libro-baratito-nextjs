@@ -33,10 +33,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${InterSans.variable} antialiased`}
+        className={`${InterSans.variable} antialiased text-black flex flex-col min-h-screen`}
       >
         <Navbar/>
+        <main className="flex-grow items-center justify-center flex">
         {children}
+        </main>
       </body>
     </html>
   );
