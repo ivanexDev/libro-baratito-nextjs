@@ -11,6 +11,12 @@ Para correr el proyecto:
 pnpm run dev
 ```
 
+Preparar husky
+
+```bash
+pnpm prepare
+```
+
 Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver los resultados
 
 Enlace de [Figma](https://www.figma.com/design/RsgqJtkupahTpnHU4YSJlI/Untitled?node-id=0-1&t=BT40HVZjDwAVQ7H8-1)
