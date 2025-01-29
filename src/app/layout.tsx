@@ -30,10 +30,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${InterSans.className} bg-white antialiased text-sm text-gray-600 flex flex-col min-h-screen`}
+        className={`${InterSans.className} bg-white antialiased text-sm text-gray-600 flex flex-col h-screen`}
       >
         <Navbar/>
-        <main className="flex-grow pt-[80px] items-center justify-center flex">
+        <main className="flex-1 flex-grow">
         {children}
         </main>
       </body>
