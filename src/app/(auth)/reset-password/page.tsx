@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { Github } from "lucide-react";
 import Link from "next/link";
 
@@ -28,8 +29,7 @@ export default function ResetPassword() {
           ¿No tienes cuenta?
         </Link>
       </div>
-
-      <button className="btn-primary">Enviar</button>
+      <Button label="Enviar"/>
     </form>
   );
 }

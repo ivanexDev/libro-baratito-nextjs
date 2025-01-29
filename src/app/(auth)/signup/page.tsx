@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { Github } from "lucide-react";
 import Link from "next/link";
 
@@ -67,7 +68,7 @@ export default function SignUp() {
         </Link>
       </div>
 
-      <button className="btn-primary">Iniciar Sesión</button>
+      <Button label="Registrarme" />
       <div className="flex items-center gap-4">
         <span className="h-[1px] w-full bg-gray-600" />
         <p className="text-center text-gray-600">O</p>
