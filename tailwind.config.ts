@@ -10,8 +10,9 @@ export default {
     extend: {
       colors: {
         "orange-primary": "#FF8457",
-        "blue-800": "#3F3D56",
-        "blue-600": "#666479"
+        "gray-800": "#3F3D56",
+        "gray-600": "#666479",
+        "gray-300": "#D0D0D0"
       },
     },
   },
