@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     locale: "es_ES"
   },
   robots: "index, follow",
-  viewport: "width=device-width, initial-scale=1"
 };
 
 export default function RootLayout({
@@ -31,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${InterSans.className} bg-white antialiased text-sm text-gray-600 text-black flex flex-col min-h-screen`}
+        className={`${InterSans.className} bg-white antialiased text-sm text-gray-600 flex flex-col min-h-screen`}
       >
         <Navbar/>
         <main className="flex-grow pt-[80px] items-center justify-center flex">
