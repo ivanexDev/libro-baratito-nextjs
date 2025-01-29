@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${InterSans.className} bg-white antialiased text-sm text-gray-600 flex flex-col h-screen`}
       >
         <Navbar/>
-        <main className="flex-1 flex-grow">
+        <main className="flex-grow">
         {children}
         </main>
       </body>
