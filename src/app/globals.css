@@ -2,10 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   /*Reglas reutilizables de tailwind usando el @apply*/
   .ejemplo {
     @apply w-full text-white bg-orange-500 h-dvh flex justify-center items-center text-5xl font-bold uppercase;
+  }
+
+  .background-pattern {
+    @apply h-dvh w-full;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url("/pattern.jpg");
+    background-position: center center;
+    background-repeat: repeat;
+  }
+
+  .input {
+    @apply border border-gray-300 px-4 py-2 rounded-md;
+  }
+
+  .btn-primary {
+    @apply btn bg-orange-500 rounded-md text-white font-bold text-base;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 justify-center px-4 py-2 rounded-md font-bold text-base hover:scale-105 hover:opacity-80 transition-all;
+  }
+
+  .link {
+    @apply hover:opacity-80 transition-opacity text-gray-600;
   }
 }

@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${InterSans.variable} antialiased`}
+        className={`${InterSans.variable} antialiased text-sm`}
       >
         {children}
       </body>
