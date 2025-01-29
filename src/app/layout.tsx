@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "@/components/Navbar";
 
 const InterSans = Inter({
   variable: "--font-inter-sans",
@@ -23,8 +23,6 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1"
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,10 +31,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${InterSans.variable} antialiased text-black flex flex-col min-h-screen`}
+        className={`${InterSans.className} font-[--font-inter-sans] bg-white antialiased text-sm text-gray-600 text-black flex flex-col min-h-screen`}
       >
         <Navbar/>
-        <main className="flex-grow items-center justify-center flex">
+        <main className="flex-grow pt-[80px] items-center justify-center flex">
         {children}
         </main>
       </body>

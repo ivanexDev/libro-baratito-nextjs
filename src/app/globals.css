@@ -2,19 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  /*Reglas reutilizables de tailwind usando el @apply*/
-
-
-  .ejemplo {
-    @apply w-full text-white bg-orange-500 h-dvh flex justify-center items-center text-5xl font-bold uppercase;
-  }
-}
-
 :root {
   --background: #ffffff;
   /* --foreground: #171717; */
-  --font-inter: 'Inter', sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -25,8 +16,31 @@
 } */
 
 body {
-  color: var(--foreground);
+  /*color: var(--foreground);*/
   background: var(--background);
   font-family: var(--font-inter);
-  /* background-image: url('/bg.jpg'); */
+}
+
+@layer utilities {
+  /*Reglas reutilizables de tailwind usando el @apply*/
+
+  .background-pattern {
+    @apply h-dvh w-full;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url("/pattern.jpg");
+    background-position: center center;
+    background-repeat: repeat;
+  }
+
+  .input {
+    @apply border border-gray-300 px-4 py-2 rounded-md;
+  }
+
+  .btn {
+    @apply border rounded h-[44px] inline-flex items-center justify-center gap-2 font-bold rounded-lg hover:scale-105 hover:opacity-80 transition-all;
+  }
+
+  .link {
+    @apply hover:opacity-80 transition-opacity text-gray-600;
+  }
 }
