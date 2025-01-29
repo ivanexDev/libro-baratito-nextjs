@@ -8,7 +8,7 @@
 
   .background-pattern {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-      url("/pattern.jpg");
+      url("/pattern.webp");
     background-position: center center;
     background-repeat: repeat;
   }
