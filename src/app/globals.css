@@ -19,7 +19,7 @@
   }
 
   .btn {
-    @apply border rounded h-[44px] inline-flex items-center justify-center gap-2 font-bold rounded-lg hover:scale-105 hover:opacity-80 transition-all;
+    @apply border h-[44px] inline-flex items-center justify-center gap-2 font-bold rounded-lg hover:scale-105 hover:opacity-80 transition-all;
   }
 
   .link {
