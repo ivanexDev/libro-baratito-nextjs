@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${InterSans.className} font-[--font-inter-sans] bg-white antialiased text-sm text-gray-600 text-black flex flex-col min-h-screen`}
+        className={`${InterSans.className} bg-white antialiased text-sm text-gray-600 text-black flex flex-col min-h-screen`}
       >
         <Navbar/>
         <main className="flex-grow pt-[80px] items-center justify-center flex">
