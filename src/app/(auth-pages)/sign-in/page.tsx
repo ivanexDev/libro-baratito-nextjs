@@ -1,9 +1,12 @@
-import Button from '@/components/Button'
-import { Github } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+"use client";
 
-export const LoginForm = () => {
+import { signInAction } from "@/app/actions";
+import { SubmitButton } from "@/components/SubmitButton";
+import { Github } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+export default function SignIn() {
   return (
     <form className="flex flex-col gap-4">
       <h2 className="text-center text-2xl text-gray-800 font-bold">
@@ -17,7 +20,7 @@ export const LoginForm = () => {
           className="input"
           placeholder="ejemplo@mail.com"
           type="email"
-          id="email"
+          name="email"
         />
       </div>
       <div className="flex flex-col gap-1">
@@ -28,28 +31,29 @@ export const LoginForm = () => {
           className="input"
           placeholder="***********"
           type="password"
-          id="password"
+          name="password"
         />
       </div>
       <div className="flex justify-between items-center">
-      <Link href="/reset-password" className="link">
-       ¿Olvidaste tu contraseña?
-      </Link>
+        <Link href="/forgot-password" className="link">
+          ¿Olvidaste tu contraseña?
+        </Link>
 
-      <Link href="/signup" className="link">
-       ¿No tienes cuenta?
-      </Link>
+        <Link href="/sign-up" className="link">
+          ¿No tienes cuenta?
+        </Link>
       </div>
 
-      <Button label="Iniciar Sesión"/>
+      <SubmitButton pendingText="Iniciando Sesion..." formAction={signInAction}>Iniciar Sesion</SubmitButton>
       <div className="flex items-center gap-4">
         <span className="h-[1px] w-full bg-gray-600" />
         <p className="text-center text-gray-600">O</p>
         <span className="h-[1px] w-full bg-gray-600" />
       </div>
-      <button className="btn bg-black text-white">
-      <Github className="w-5 h-5"/>Iniciar Sesion con Github
+      <button type="button" className="btn bg-black text-white">
+        <Github className="w-5 h-5" />
+        Iniciar Sesion con Github
       </button>
     </form>
-  )
+  );
 }
