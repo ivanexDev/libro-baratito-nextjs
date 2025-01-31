@@ -1,5 +1,4 @@
 import { forgotPasswordAction } from "@/app/actions";
-import Button from "@/components/Button";
 import { SubmitButton } from "@/components/SubmitButton";
 import Link from "next/link";
 

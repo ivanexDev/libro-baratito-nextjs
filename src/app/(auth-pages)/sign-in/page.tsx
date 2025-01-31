@@ -1,5 +1,3 @@
-"use client";
-
 import { signInAction } from "@/app/actions";
 import { SubmitButton } from "@/components/SubmitButton";
 import { Github } from "lucide-react";

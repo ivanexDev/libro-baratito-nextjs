@@ -1,5 +1,4 @@
 import { signUpAction } from "@/app/actions";
-import Button from "@/components/Button";
 import { SubmitButton } from "@/components/SubmitButton";
 import { Github } from "lucide-react";
 import Link from "next/link";

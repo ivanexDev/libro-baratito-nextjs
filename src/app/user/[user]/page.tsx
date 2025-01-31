@@ -19,7 +19,7 @@ export default async function Page({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    return redirect("/sign-in");
   }
 
   if (user.email !== decodedName) {
