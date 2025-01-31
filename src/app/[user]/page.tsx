@@ -4,7 +4,8 @@ import { books } from "@/db/db"
 
 
 export default async function Page({params,}: {params: Promise<{ user: string }>}){
-    // const userName = (await params).user
+    const userName = (await params).user
+    console.log(userName)
     return(
       <section className="flex h-full justify-center">
         <div className="mt-5">
