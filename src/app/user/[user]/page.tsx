@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 import BookCard from "@/components/BookCard";
 import PlusButton from "@/components/PlusButton";
 import { books } from "@/db/db";
->>>>>>> main
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -15,11 +12,7 @@ export default async function Page({
   const supabase = await createClient();
   const userName = (await params).user;
 
-<<<<<<< HEAD
   const decodedName = decodeURIComponent(userName)
-=======
-  const decodedName = decodeURIComponent(userName);
->>>>>>> main
 
   const {
     data: { user },
@@ -32,9 +25,6 @@ export default async function Page({
   if (user.email !== decodedName) {
     return redirect(`/user/${user.email}`);
   }
-<<<<<<< HEAD
-  return <div>Usuario: {decodedName}</div>;
-=======
   return (
     <div>
       <section className="flex h-full justify-center">
@@ -52,5 +42,4 @@ export default async function Page({
       </section>
     </div>
   );
->>>>>>> main
 }
