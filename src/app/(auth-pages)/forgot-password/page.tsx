@@ -1,7 +1,8 @@
-import Button from "@/components/Button";
+import { forgotPasswordAction } from "@/app/actions";
+import { SubmitButton } from "@/components/SubmitButton";
 import Link from "next/link";
 
-export default function ResetPassword() {
+export default function RecoveryPassword() {
   return (
     <form className="flex flex-col gap-4">
       <h2 className="text-center text-2xl text-gray-800 font-bold">
@@ -15,20 +16,21 @@ export default function ResetPassword() {
           className="input"
           placeholder="ejemplo@mail.com"
           type="email"
-          id="email"
+          name="email"
         />
       </div>
 
       <div className="flex justify-between items-center">
-        <Link href="/reset-password" className="link">
+        <Link href="/sign-in" className="link">
           Ya tengo cuenta
         </Link>
 
-        <Link href="/signup" className="link">
+        <Link href="/sign-up" className="link">
           ¿No tienes cuenta?
         </Link>
       </div>
-      <Button label="Enviar"/>
+
+      <SubmitButton pendingText="Cargando..." formAction={forgotPasswordAction}>Enviar</SubmitButton>
     </form>
   );
 }

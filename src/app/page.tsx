@@ -9,8 +9,8 @@ export default function Home() {
       <p className="text-2xl max-w-[548px] text-center">Monitorea el precio de tus libros favorios y aprovecha las ofertas.</p>
       <Image src={homePageImage} width={600} height={480} alt="Imagen del home"></Image>
       <div className="flex flex-col gap-5 mt-[76px]">
-      <ButtonLink label="Empezar" style="w-[480px]"  href="/signup"/>
-      <ButtonLink label="Ya tengo una cuenta" style="w-[480px]" color="secondary" href="/login"/>
+      <ButtonLink label="Empezar" style="w-[480px]"  href="/sign-up"/>
+      <ButtonLink label="Ya tengo una cuenta" style="w-[480px]" color="secondary" href="/sign-in"/>
       </div>
     </section>
   );

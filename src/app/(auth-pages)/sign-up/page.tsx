@@ -1,9 +1,10 @@
-import Button from '@/components/Button'
-import { Github } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import { signUpAction } from "@/app/actions";
+import { SubmitButton } from "@/components/SubmitButton";
+import { Github } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
-export const SignupForm = () => {
+export default function SignUp() {
   return (
     <form className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
@@ -15,6 +16,7 @@ export const SignupForm = () => {
         </p>
       </div>
 
+      {/*
       <div className="flex flex-col gap-1">
         <label className="text-gray-600" htmlFor="name">
           Nombre
@@ -26,6 +28,7 @@ export const SignupForm = () => {
           id="name"
         />
       </div>
+      */}
       <div className="flex flex-col gap-1">
         <label className="text-gray-600" htmlFor="email">
           Correo electronico
@@ -34,7 +37,7 @@ export const SignupForm = () => {
           className="input"
           placeholder="ejemplo@mail.com"
           type="email"
-          id="email"
+          name="email"
         />
       </div>
       <div className="flex flex-col gap-1">
@@ -45,10 +48,12 @@ export const SignupForm = () => {
           className="input"
           placeholder="***********"
           type="password"
-          id="password"
+          name="password"
         />
       </div>
-      <div className="flex flex-col gap-1">
+      {
+        /*
+        <div className="flex flex-col gap-1">
         <label className="text-gray-600" htmlFor="confirmPassword">
           Confirmar Contraseña
         </label>
@@ -59,17 +64,19 @@ export const SignupForm = () => {
           id="confirmPassword"
         />
       </div>
+         */
+      }
       <div className="flex justify-between items-center">
-        <Link href="/reset-password" className="link">
+        <Link href="/forgot-password" className="link">
           ¿Olvidaste tu contraseña?
         </Link>
 
-        <Link href="/login" className="link">
+        <Link href="/sign-in" className="link">
           Acceder a mi cuenta
         </Link>
       </div>
 
-      <Button label="Registrarme" />
+      <SubmitButton pendingText="Cargando..." formAction={signUpAction} >Registrarme</SubmitButton>
       <div className="flex items-center gap-4">
         <span className="h-[1px] w-full bg-gray-600" />
         <p className="text-center text-gray-600">O</p>
@@ -80,5 +87,5 @@ export const SignupForm = () => {
         Iniciar Sesion con Github
       </button>
     </form>
-  )
+  );
 }
