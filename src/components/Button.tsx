@@ -3,6 +3,7 @@ import React from "react";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   color?: "primary" | "secondary";
+  onClick: () => void;
 }
 
 const Button = ({ label, onClick, style, color = "primary", ...rest }: ButtonProps) => {
