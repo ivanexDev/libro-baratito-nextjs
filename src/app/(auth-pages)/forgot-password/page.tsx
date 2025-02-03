@@ -1,8 +1,10 @@
 import { forgotPasswordAction } from "@/app/actions";
+import { FormMessage, Message } from "@/components/FormMessage";
 import { SubmitButton } from "@/components/SubmitButton";
 import Link from "next/link";
 
-export default function RecoveryPassword() {
+export default async function RecoveryPassword(props: { searchParams: Promise<Message> }) {
+  const searchParams = await props.searchParams;
   return (
     <form className="flex flex-col gap-4">
       <h2 className="text-center text-2xl text-gray-800 font-bold">
@@ -31,6 +33,8 @@ export default function RecoveryPassword() {
       </div>
 
       <SubmitButton pendingText="Cargando..." formAction={forgotPasswordAction}>Enviar</SubmitButton>
+
+      <FormMessage message={searchParams}/>
     </form>
   );
 }

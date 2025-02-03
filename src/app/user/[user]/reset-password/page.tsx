@@ -1,7 +1,9 @@
 import { resetPasswordAction } from "@/app/actions";
+import { FormMessage, Message } from "@/components/FormMessage";
 import { SubmitButton } from "@/components/SubmitButton";
 
-export default async function ResetPassword() {
+export default async function ResetPassword(props: { searchParams: Promise<Message> }) {
+  const searchParams = await props.searchParams;
   return (
     <div className="w-full h-full flex justify-center items-center">
       <form className="flex flex-col gap-4">
@@ -42,6 +44,8 @@ export default async function ResetPassword() {
         >
           Cambiar Contraseña
         </SubmitButton>
+        
+        <FormMessage message={searchParams}/>
       </form>
     </div>
   );

@@ -1,10 +1,12 @@
 import { signInAction } from "@/app/actions";
+import { FormMessage, Message } from "@/components/FormMessage";
 import { SubmitButton } from "@/components/SubmitButton";
 import { Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-export default function SignIn() {
+export default async function SignIn(props: { searchParams: Promise<Message> }) {
+  const searchParams = await props.searchParams;
   return (
     <form className="flex flex-col gap-4">
       <h2 className="text-center text-2xl text-gray-800 font-bold">
@@ -42,7 +44,10 @@ export default function SignIn() {
         </Link>
       </div>
 
-      <SubmitButton pendingText="Iniciando Sesion..." formAction={signInAction}>Iniciar Sesion</SubmitButton>
+      <SubmitButton pendingText="Iniciando Sesion..." formAction={signInAction}>
+        Iniciar Sesion
+      </SubmitButton>
+
       <div className="flex items-center gap-4">
         <span className="h-[1px] w-full bg-gray-600" />
         <p className="text-center text-gray-600">O</p>
@@ -52,6 +57,8 @@ export default function SignIn() {
         <Github className="w-5 h-5" />
         Iniciar Sesion con Github
       </button>
+      <FormMessage message={searchParams}/>
+
     </form>
   );
 }

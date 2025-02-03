@@ -1,10 +1,12 @@
 import { signUpAction } from "@/app/actions";
+import { FormMessage, Message } from "@/components/FormMessage";
 import { SubmitButton } from "@/components/SubmitButton";
 import { Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-export default function SignUp() {
+export default async function SignUp(props: { searchParams: Promise<Message> }) {
+  const searchParams = await props.searchParams;
   return (
     <form className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
@@ -86,6 +88,8 @@ export default function SignUp() {
         <Github className="w-5 h-5" />
         Iniciar Sesion con Github
       </button>
+
+      <FormMessage message={searchParams}/>
     </form>
   );
 }
