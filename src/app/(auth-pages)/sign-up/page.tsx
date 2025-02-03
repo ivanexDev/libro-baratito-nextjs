@@ -1,9 +1,9 @@
 import { signUpAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/FormMessage";
 import { SubmitButton } from "@/components/SubmitButton";
-import { Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { LuGithub } from "react-icons/lu";
 
 export default async function SignUp(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
@@ -85,7 +85,7 @@ export default async function SignUp(props: { searchParams: Promise<Message> }) 
         <span className="h-[1px] w-full bg-gray-600" />
       </div>
       <button className="btn bg-black text-white">
-        <Github className="w-5 h-5" />
+        <LuGithub className="w-5 h-5" />
         Iniciar Sesion con Github
       </button>
 
