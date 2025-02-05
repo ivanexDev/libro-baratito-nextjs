@@ -144,3 +144,78 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+export const createBook = async (name: string, url: string, imagen: string) => {
+  const supabase = await createClient(); 
+
+  // Obtener el usuario autenticado
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData?.user) {
+    console.error("Error obteniendo el usuario:", userError);
+    return;
+  }
+
+  const user_id = userData.user.id;
+
+  // Verificar si el libro ya existe en la base de datos
+  const { data: existingBook, error: fetchBookError } = await supabase
+    .from('books')
+    .select('id')
+    .eq('url', url)
+    .single();
+
+  let book_id;
+
+  if (fetchBookError) {
+    if (fetchBookError.code !== 'PGRST116') { // Error de "no rows found"
+      console.error("Error buscando el libro:", fetchBookError);
+      return;
+    }
+  }
+
+  if (!existingBook) {
+    // Insertar el libro en la tabla "books" solo si no existe
+    const { data: bookData, error: bookError } = await supabase
+      .from('books')
+      .insert([{ nombre: name, url: url, imagen_url: imagen }])
+      .select()
+      .single();
+
+    if (bookError || !bookData) {
+      console.error("Error insertando el libro:", bookError);
+      return;
+    }
+
+    book_id = bookData.id;
+  } else {
+    book_id = existingBook.id;
+  }
+
+  // Verificar si el usuario ya tiene asociado este libro
+  const { data: existingUserBook, error: fetchUserBookError } = await supabase
+    .from('user_books')
+    .select('id')
+    .eq('user_id', user_id)
+    .eq('book_id', book_id)
+    .single();
+
+  if (fetchUserBookError && fetchUserBookError.code !== 'PGRST116') {
+    console.error("Error verificando la asociación del libro con el usuario:", fetchUserBookError);
+    return;
+  }
+
+  if (!existingUserBook) {
+    // Asociar el libro al usuario si no está registrado en user_books
+    const { error: userBookError } = await supabase
+      .from('user_books')
+      .insert([{ user_id, book_id }]);
+
+    if (userBookError) {
+      console.error("Error asociando el libro al usuario:", userBookError);
+    } else {
+      console.log(`Libro "${name}" asociado al usuario ${user_id}`);
+    }
+  } else {
+    console.log(`El usuario ${user_id} ya tiene asociado el libro "${name}"`);
+  }
+};
