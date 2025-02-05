@@ -2,7 +2,8 @@
 
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { createBook } from "../actions";
+import { addPrice, createBook } from "../actions";
+import { toNumber } from "@/utils/toNumber";
 
 
 export async function goScrap(url: string) {
@@ -13,24 +14,50 @@ export async function goScrap(url: string) {
     const $ = cheerio.load(data);
 
     // Extraer datos
-    const title = $(".tituloProducto").text().trim();
-    const currentPrice = $(".precio").text().trim();
-    const imageUrl = $('#imgPortada').attr("src") || $('#imgPortada').attr("data-src") || "";
+    const book_title = $(".tituloProducto").first().text().trim();
+    const image_url = $('#imgPortada').attr("src") || $('#imgPortada').attr("data-src") || "";
+    const author = $(".link-underline").text().trim().split("\n")[0]
+    const price = toNumber($(".precio").first().text().trim())
 
     const completeBook = {
-      title,
-      currentPrice,
-      imageUrl,
-      url
+      book_title,
+      price,
+      image_url,
+      url,
+      author
     }
 
     // Guardar en la base de datos
-    createBook(title, url, imageUrl)
+    createBook(book_title, url, image_url, author,price)
 
     console.log("Added book",completeBook)
 
     return completeBook;
 
+  } catch (error) {
+    console.error("Error en el scraping:", error);
+  }
+}
+
+export async function getPrice(url:string){
+  try {
+        // Descargar HTML de la página
+        const { data } = await axios.get(url);
+        const $ = cheerio.load(data);
+    
+        // Extraer precio
+        const currentPrice = $(".precio").text().trim();
+    
+        console.log("currentPrice", currentPrice)
+
+        const justNumber = toNumber(currentPrice)
+
+        console.log({justNumber})
+    
+        await addPrice(justNumber, url)
+        return justNumber;
+
+    
   } catch (error) {
     console.error("Error en el scraping:", error);
   }

@@ -145,7 +145,7 @@ export const signOutAction = async () => {
   return redirect("/sign-in");
 };
 
-export const createBook = async (name: string, url: string, imagen: string) => {
+export const createBook = async (book_title: string, url: string, image_url: string, author: string, price:number|string) => {
   const supabase = await createClient(); 
 
   // Obtener el usuario autenticado
@@ -177,9 +177,11 @@ export const createBook = async (name: string, url: string, imagen: string) => {
     // Insertar el libro en la tabla "books" solo si no existe
     const { data: bookData, error: bookError } = await supabase
       .from('books')
-      .insert([{ nombre: name, url: url, imagen_url: imagen }])
+      .insert([{ book_title, url, image_url, author }])
       .select()
       .single();
+      console.log("este es el precio antes de la funcion", price)
+      await addPrice(price, url)
 
     if (bookError || !bookData) {
       console.error("Error insertando el libro:", bookError);
@@ -213,9 +215,44 @@ export const createBook = async (name: string, url: string, imagen: string) => {
     if (userBookError) {
       console.error("Error asociando el libro al usuario:", userBookError);
     } else {
-      console.log(`Libro "${name}" asociado al usuario ${user_id}`);
+      console.log(`Libro "${book_title}" asociado al usuario ${user_id}`);
     }
   } else {
-    console.log(`El usuario ${user_id} ya tiene asociado el libro "${name}"`);
+    console.log(`El usuario ${user_id} ya tiene asociado el libro "${book_title}"`);
   }
+};
+
+export const addPrice = async (price: number| string, url: string) => {
+  const supabase = await createClient(); 
+
+  // Obtener el book_id
+  const { data: book, error: bookError } = await supabase
+    .from('books')
+    .select('id')
+    .eq('url', url)
+    .single();
+
+  if (bookError || !book) {
+    console.error("Error obteniendo el book_id:", bookError);
+    return null;
+  }
+
+  const book_id = book.id;
+  console.log("Book ID:", book_id);
+
+  console.log("Precio del libro:", price);
+
+  // Insertar el precio en book_prices
+  const { data: priceData, error: priceError } = await supabase
+    .from('book_prices')  // Asegúrate de que el nombre de la tabla sea 'book_prices'
+    .insert([{ book_id, price }])  // Usa 'precio' en lugar de 'price'
+    .select()
+    .single();
+
+  if (priceError || !priceData) {
+    console.error("Error al agregar el precio:", priceError);
+    return null;
+  }
+
+  console.log("Precio agregado exitosamente:", priceData);
 };

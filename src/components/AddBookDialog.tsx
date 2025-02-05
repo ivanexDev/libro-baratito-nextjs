@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import Button from './Button'
 import {CircleX} from "lucide-react"
 import {goScrap} from '@/app/api/scrap'
-// import { createBook } from '@/app/actions'
-
 
 interface AddBookDialogProps {
   handleDialog: (state:boolean)=>void
