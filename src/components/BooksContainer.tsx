@@ -27,6 +27,8 @@ export default function BooksContainer() {
 
         setBooks(allBooks);
       } catch (error) {
+
+        console.log("No se pueden obtener los librps", error)
       } finally {
         setisLoading(false);
       }

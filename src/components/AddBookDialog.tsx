@@ -2,7 +2,7 @@ import React, { ChangeEvent, useContext, useState } from "react";
 import Button from "./Button";
 import { X } from "lucide-react";
 import { goScrap } from "@/app/api/scrap";
-import { Book, validateUrl } from "@/models";
+import { validateUrl } from "@/models";
 import { BookContext } from "./BooksContainer";
 
 interface AddBookDialogProps {
@@ -35,11 +35,14 @@ const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
         updateBookList(newBook);
       }
       handleDialog(false);
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Maneja el error, por ejemplo, mostrando un mensaje al usuario
       console.error("Error al agregar libro:", error);
 
-      setError({message: error.message, isError: true})
+      if(error){
+        setError({message: 'Error al agregar libro', isError: true})
+
+      }
     } finally {
       setUrl('')
       setError({message: null, isError: false});

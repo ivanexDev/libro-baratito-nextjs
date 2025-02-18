@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import AddBookDialog from "./AddBookDialog";
-import { Book } from "@/models";
 
 
 const PlusButton = () => {
