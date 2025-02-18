@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import Button from "./Button";
 import { X } from "lucide-react";
 import { goScrap } from "@/app/api/scrap";
-import { Book } from "@/models";
+import { Book, validateUrl } from "@/models";
 import { BookContext } from "./BooksContainer";
 
 interface AddBookDialogProps {
@@ -10,28 +10,48 @@ interface AddBookDialogProps {
   value: boolean;
 }
 
-const AddBookDialog = ({
-  handleDialog,
-  value,
-}: AddBookDialogProps) => {
+const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
   const [url, setUrl] = useState("");
+  const [error, setError] = useState<{
+    message: null | string;
+    isError: boolean;
+  }>({ message: null, isError: false });
 
-  const {updateBookList} = useContext(BookContext)
+  const { updateBookList } = useContext(BookContext);
 
   const handleSubmit = async () => {
     try {
+
+      if(!validateUrl(url)){
+        setError({message: "URL inválida. Por favor, ingresa una URL de Buscalibre.com válida.", isError: true});
+        return;
+      }
+
+
+
       const newBook = await goScrap(url); // Llama al Server Action
 
       if (newBook) {
-       updateBookList(newBook);
+        updateBookList(newBook);
       }
       handleDialog(false);
-    } catch (error) {
+    } catch (error: any) {
       // Maneja el error, por ejemplo, mostrando un mensaje al usuario
       console.error("Error al agregar libro:", error);
-      alert("Error al agregar el libro. Inténtalo de nuevo.");
+
+      setError({message: error.message, isError: true})
+    } finally {
+      setUrl('')
+      setError({message: null, isError: false});
+
     }
   };
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+
+    setUrl(e.target.value);
+  }
 
   return (
     <>
@@ -71,9 +91,11 @@ const AddBookDialog = ({
               type="text"
               placeholder="https://www.buscalibre.cl/libro-mientras-yub..."
               value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              onChange={handleChange}
             />
           </div>
+
+          <span className="text-red-500">{error.isError && error.message}</span>
 
           <Button onClick={handleSubmit} label="Agregar" />
         </div>
