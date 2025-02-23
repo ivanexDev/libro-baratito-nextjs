@@ -7,7 +7,7 @@ export default function AuthLayout({
 }>) {
   return (
     <div className="background-pattern h-full w-full flex justify-center items-center">
-      <div className="bg-white w-[500px] p-8 rounded-lg">
+      <div className="bg-white w-[500px] p-8 rounded-lg max-md:fixed max-md:bottom-0 max-md:z-20 max-md:w-full">
       {children}
       </div>
     </div>

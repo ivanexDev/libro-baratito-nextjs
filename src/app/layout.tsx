@@ -36,6 +36,9 @@ export default function RootLayout({
         <main className="flex-grow">
         {children}
         </main>
+
+        <div className="hidden max-md:flex content-normal min-h-[80px] relative bottom-0"></div>
+
       </body>
     </html>
   );

@@ -42,9 +42,9 @@ export default function BooksContainer() {
 
   return (
     <BookContext.Provider value={{ books, updateBookList }}>
-      <div>
-        <div className="flex justify-between">
-          <h2 className="font-bold text-4xl mb-9">Mis Libros</h2>
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-between items-center">
+          <h2 className="font-bold text-4xl max-md:text-2xl">Mis Libros</h2>
           <PlusButton />
         </div>
         <BookList isLoading={isLoading} books={books} />

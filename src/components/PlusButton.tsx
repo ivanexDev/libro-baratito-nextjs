@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus } from "lucide-react";
 import AddBookDialog from "./AddBookDialog";
+import { LuPlus } from "react-icons/lu";
 
 
 const PlusButton = () => {
@@ -15,10 +15,10 @@ const PlusButton = () => {
   return (
     <>
       <button
-        className="flex  justify-center items-center  text-white rounded-md bg-orange-primary h-[30px] w-[30px]"
+        className="flex justify-center items-center text-white rounded-xl bg-orange-primary h-[40px] w-[40px] px-2"
         onClick={() => handleDialog(true)}
       >
-        <Plus />
+        <LuPlus  className="w-8 h-8"/>
       </button>
       <AddBookDialog value={isDialogOpen} handleDialog={handleDialog} />
     </>

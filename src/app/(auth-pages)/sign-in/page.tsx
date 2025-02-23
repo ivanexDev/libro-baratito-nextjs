@@ -1,8 +1,8 @@
 import { signInAction } from "@/app/actions";
 import { SubmitButton } from "@/components/SubmitButton";
-import { Github } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { LuGithub } from "react-icons/lu";
 
 export default function SignIn() {
   return (
@@ -49,7 +49,7 @@ export default function SignIn() {
         <span className="h-[1px] w-full bg-gray-600" />
       </div>
       <button type="button" className="btn bg-black text-white">
-        <Github className="w-5 h-5" />
+        <LuGithub className="w-5 h-5" />
         Iniciar Sesion con Github
       </button>
     </form>

@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import Button from "./Button";
-import { X } from "lucide-react";
 import { goScrap } from "@/app/api/scrap";
 import { validateUrl } from "@/models";
 import { BookContext } from "./BooksContainer";
+import { LuX } from "react-icons/lu";
 
 interface AddBookDialogProps {
   handleDialog: (state: boolean) => void;
@@ -22,8 +22,8 @@ const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
   const handleSubmit = async () => {
     try {
 
-      if(!validateUrl(url)){
-        setError({message: "URL inválida. Por favor, ingresa una URL de Buscalibre.com válida.", isError: true});
+      if (!validateUrl(url)) {
+        setError({ message: "URL inválida. Por favor, ingresa una URL de Buscalibre.com válida.", isError: true });
         return;
       }
 
@@ -39,13 +39,13 @@ const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
       // Maneja el error, por ejemplo, mostrando un mensaje al usuario
       console.error("Error al agregar libro:", error);
 
-      if(error){
-        setError({message: 'Error al agregar libro', isError: true})
+      if (error) {
+        setError({ message: 'Error al agregar libro', isError: true })
 
       }
     } finally {
       setUrl('')
-      setError({message: null, isError: false});
+      setError({ message: null, isError: false });
 
     }
   };
@@ -59,11 +59,11 @@ const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
   return (
     <>
       <div
-        className={`fixed z-[100] w-[600px] min-h-[200px] h-min inset-0 m-auto bg-white rounded-xl transition-all duration-300 ease-in-out
-          ${
-            value
-              ? "scale-100 opacity-100 pointer-events-auto"
-              : "scale-0 opacity-0 pointer-events-none"
+        className={`fixed z-[100] w-[600px] min-h-[200px] h-min inset-0 m-auto bg-white rounded-xl max-md:rounded-none transition-all duration-300 ease-in-out
+          max-md:mt-full max-md:bottom-0 max-md:w-full max-md:inset-y-auto
+          ${value
+            ? "scale-100 opacity-100 pointer-events-auto max-md:scale-100 translate-y-0"
+            : "scale-0 opacity-0 pointer-events-none max-md:scale-100 translate-y-full"
           }
           `}
       >
@@ -75,7 +75,7 @@ const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
               handleDialog(false);
             }}
           >
-            <X className="w-6 h-6" />
+            <LuX className="w-6 h-6" />
           </button>
         </div>
         <div className="flex w-full h-full p-8 flex-col gap-4">
@@ -108,10 +108,9 @@ const AddBookDialog = ({ handleDialog, value }: AddBookDialogProps) => {
         onClick={() => handleDialog(false)}
         className={`
         fixed inset-0 bg-black bg-opacity-50 content-normal transition-opacity duration-300 ease-in-out
-          ${
-            value
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+          ${value
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
           }
         `}
       ></div>

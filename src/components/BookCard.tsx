@@ -20,7 +20,7 @@ const BookCard = ({ book_title, image_url, author, price }: BookCardProps) => {
         className="object-contain h-[300px] w-[240px]  border-2 border-gray-600/20"
       />
       <div className="m-2">
-        <h3 className="font-bold text-sm h-11">{book_title}</h3>
+        <h3 className="font-bold text-sm h-11 ellipsis-2-lines">{book_title}</h3>
         <p>{author}</p>
         <p className="text-orange-primary font-bold text-xl">
           {price && toCurrency(price)}

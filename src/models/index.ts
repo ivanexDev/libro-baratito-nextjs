@@ -6,8 +6,6 @@ export interface Book {
   price?: number;
 }
 
-
-
 export function validateUrl(url: string) {
   // 1. Verificar si la URL tiene HTTPS
   if (!url.startsWith('https://')) {
